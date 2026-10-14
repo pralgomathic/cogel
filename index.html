@@ -1,38 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
 
   <meta
     name="description"
-    content="CoGeL: Constraint-to-Geometry Learning from Demonstrations and Failures for Safe Long-Horizon Robot Navigation"
-  >
+    content="CoGeL: Constraint-to-Geometry Learning from Demonstrations and Failures for Safe Long-Horizon Robot Navigation">
 
   <meta
     name="keywords"
-    content="CoGeL, robot learning, reinforcement learning, safe navigation, goal-conditioned reinforcement learning, quasimetric learning, long-horizon navigation"
-  >
+    content="CoGeL, robot learning, reinforcement learning, safe navigation, quasimetric learning, long-horizon navigation, CoRL 2026">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>
-    CoGeL: Constraint-to-Geometry Learning from Demonstrations and Failures for Safe Long-Horizon Robot Navigation
+    CoGeL | Constraint-to-Geometry Learning
   </title>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
+  <!-- ====================================================== -->
   <!-- MathJax -->
+  <!-- ====================================================== -->
+
   <script>
     window.MathJax = {
       tex: {
@@ -47,507 +37,1182 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
 
+
+  <!-- ====================================================== -->
   <!-- Fonts -->
+  <!-- ====================================================== -->
+
   <link
     href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-    rel="stylesheet"
-  >
+    rel="stylesheet">
 
-  <!-- Local CSS -->
+
+  <!-- ====================================================== -->
+  <!-- Existing website CSS -->
+  <!-- ====================================================== -->
+
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
 
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
-  >
+    href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
-  <link rel="stylesheet" href="./static/css/index.css">
 
-  <!-- Local JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <!-- ====================================================== -->
+  <!-- CoGeL design -->
+  <!-- ====================================================== -->
 
   <style>
-    .cogel-summary {
-      max-width: 900px;
-      margin: 0 auto;
+
+    :root {
+      --navy: #102a43;
+      --navy-2: #183b56;
+      --teal: #087f72;
+      --teal-light: #e8f5f2;
+      --blue: #2878b5;
+
+      --orange: #dd6b20;
+      --orange-light: #fff4e8;
+
+      --red: #c94b45;
+      --red-light: #fff0ef;
+
+      --text: #263238;
+      --muted: #627d8a;
+
+      --light: #f6f9fb;
+      --line: #dde7ec;
+      --white: #ffffff;
     }
 
-    .method-card,
-    .result-card,
-    .theory-card {
-      height: 100%;
-      border: 1px solid #ececec;
-      border-radius: 10px;
-      padding: 1.15rem;
-      background: #fff;
+
+    html {
+      scroll-behavior: smooth;
     }
 
-    .method-index {
-      display: inline-flex;
-      width: 1.8rem;
-      height: 1.8rem;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background: #222;
-      color: #fff;
+
+    body {
+      font-family: "Noto Sans", sans-serif;
+      color: var(--text);
+      background: white;
+    }
+
+
+    /* ===================================================== */
+    /* Header */
+    /* ===================================================== */
+
+    .cogel-hero {
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(8, 127, 114, 0.35),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #0d2335 0%,
+          #123e52 55%,
+          #0c665f 100%
+        );
+
+      color: white;
+
+      padding-top: 4.5rem;
+      padding-bottom: 4.2rem;
+    }
+
+
+    .publication-title {
+      color: white !important;
+      font-family: "Google Sans", sans-serif;
       font-weight: 700;
-      margin-bottom: 0.6rem;
+      line-height: 1.13;
+      max-width: 1050px;
+      margin: 0 auto 1.3rem auto;
     }
 
-    .key-equation {
-      overflow-x: auto;
-      padding: 0.55rem 0;
+
+    .hero-authors {
+      color: rgba(255,255,255,0.94);
+      margin-top: 0.9rem;
+    }
+
+
+    .hero-affiliation {
+      color: rgba(255,255,255,0.76);
+      margin-top: 0.45rem;
+    }
+
+
+    .venue-badge {
+      display: inline-block;
+      margin-top: 1.15rem;
+
+      padding: 0.45rem 1rem;
+
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 999px;
+
+      background: rgba(255,255,255,0.10);
+
+      color: white;
+      font-weight: 600;
+    }
+
+
+    .publication-links {
+      margin-top: 1.5rem;
+    }
+
+
+    .publication-links .button {
+      margin: 0.25rem;
+      border: none;
+      font-weight: 600;
+    }
+
+
+    .paper-button {
+      background: white !important;
+      color: var(--navy) !important;
+    }
+
+
+    .code-button {
+      background: var(--orange) !important;
+      color: white !important;
+    }
+
+
+    /* ===================================================== */
+    /* General sections */
+    /* ===================================================== */
+
+    .section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+
+    .section-soft {
+      background: var(--light);
+    }
+
+
+    .section-title {
+      font-family: "Google Sans", sans-serif;
+      font-weight: 700;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 0.6rem !important;
+    }
+
+
+    .section-subtitle {
+      max-width: 800px;
+      margin: 0 auto 2.5rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+
+    .accent-line {
+      width: 56px;
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        var(--teal),
+        var(--orange)
+      );
+
+      margin: 0.75rem auto 2.2rem auto;
+      border-radius: 4px;
+    }
+
+
+    /* ===================================================== */
+    /* Abstract */
+    /* ===================================================== */
+
+    .abstract-box {
+      max-width: 900px;
+      margin: auto;
+
+      background: white;
+
+      padding: 2rem 2.2rem;
+
+      border-left: 5px solid var(--teal);
+      border-radius: 8px;
+
+      box-shadow:
+        0 8px 28px rgba(16, 42, 67, 0.08);
+
+      line-height: 1.75;
+    }
+
+
+    /* ===================================================== */
+    /* Main teaser / figures */
+    /* ===================================================== */
+
+    .figure-card {
+      background: white;
+
+      border: 1px solid var(--line);
+      border-radius: 12px;
+
+      padding: 1rem;
+
+      box-shadow:
+        0 6px 22px rgba(16, 42, 67, 0.07);
+
+      height: 100%;
+    }
+
+
+    .figure-card img {
+      display: block;
+
+      width: 100%;
+      max-height: 520px;
+
+      object-fit: contain;
+
+      margin: auto;
+
+      border-radius: 6px;
+    }
+
+
+    .figure-caption {
+      margin-top: 0.85rem;
+
+      color: #526b77;
+      line-height: 1.5;
+
+      font-size: 0.92rem;
       text-align: center;
     }
 
-    .compact-table th,
-    .compact-table td {
-      white-space: nowrap;
+
+    .overview-figure {
+      max-width: 1050px;
+      margin: auto;
+    }
+
+
+    /* ===================================================== */
+    /* Method cards */
+    /* ===================================================== */
+
+    .method-card {
+      background: white;
+
+      border: 1px solid var(--line);
+      border-radius: 12px;
+
+      padding: 1.35rem;
+
+      height: 100%;
+
+      box-shadow:
+        0 5px 18px rgba(16,42,67,0.05);
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+
+    .method-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 9px 24px rgba(16,42,67,0.10);
+    }
+
+
+    .method-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 36px;
+      height: 36px;
+
+      margin-bottom: 0.8rem;
+
+      border-radius: 50%;
+
+      color: white;
+      background: var(--navy);
+
+      font-weight: 700;
+    }
+
+
+    .method-card.safe .method-number {
+      background: var(--teal);
+    }
+
+
+    .method-card.risk .method-number {
+      background: var(--orange);
+    }
+
+
+    .method-card.geometry .method-number {
+      background: var(--blue);
+    }
+
+
+    .method-card.plan .method-number {
+      background: var(--navy);
+    }
+
+
+    .method-card h3 {
+      color: var(--navy);
+    }
+
+
+    /* ===================================================== */
+    /* Equation blocks */
+    /* ===================================================== */
+
+    .equation-block {
+      padding: 1.1rem 1.4rem;
+      margin: 1.5rem 0;
+
+      background: #f4faf9;
+
+      border-left: 4px solid var(--teal);
+      border-radius: 6px;
+
+      overflow-x: auto;
+    }
+
+
+    /* ===================================================== */
+    /* Theory */
+    /* ===================================================== */
+
+    .theory-card {
+      height: 100%;
+
+      padding: 1.35rem;
+
+      border-radius: 10px;
+
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+
+    .theory-card h3 {
+      color: var(--navy);
+      font-size: 1.05rem;
+      margin-bottom: 0.7rem;
+    }
+
+
+    .theory-card.teal {
+      border-top: 4px solid var(--teal);
+    }
+
+
+    .theory-card.orange {
+      border-top: 4px solid var(--orange);
+    }
+
+
+    .theory-card.blue {
+      border-top: 4px solid var(--blue);
+    }
+
+
+    /* ===================================================== */
+    /* Highlight strip */
+    /* ===================================================== */
+
+    .result-highlight {
+      text-align: center;
+
+      padding: 1.2rem;
+
+      height: 100%;
+
+      border-radius: 10px;
+
+      background: var(--navy);
+      color: white;
+    }
+
+
+    .result-value {
+      display: block;
+
+      font-size: 2rem;
+      font-weight: 700;
+      color: #7ee0cc;
+    }
+
+
+    .result-label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+
+    /* ===================================================== */
+    /* Tables */
+    /* ===================================================== */
+
+    .result-table {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+
+    .result-table thead th {
+      background: var(--navy);
+      color: white;
+
       text-align: center;
       vertical-align: middle;
     }
 
-    .compact-table th:first-child,
-    .compact-table td:first-child {
+
+    .result-table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+
+    .result-table td:first-child {
       text-align: left;
     }
 
-    .publication-venue {
-      margin-top: 0.45rem;
+
+    .ours-row {
+      background: var(--teal-light) !important;
+      font-weight: 700;
+    }
+
+
+    /* ===================================================== */
+    /* Safety colors */
+    /* ===================================================== */
+
+    .safe-text {
+      color: var(--teal);
       font-weight: 600;
     }
 
-    .coming-soon {
-      cursor: default;
-      opacity: 0.85;
+
+    .risk-text {
+      color: var(--orange);
+      font-weight: 600;
     }
+
+
+    /* ===================================================== */
+    /* Limitations */
+    /* ===================================================== */
+
+    .limitation-box {
+      max-width: 900px;
+      margin: auto;
+
+      padding: 1.6rem 1.8rem;
+
+      background: var(--orange-light);
+
+      border-left: 5px solid var(--orange);
+      border-radius: 8px;
+
+      line-height: 1.7;
+    }
+
+
+    /* ===================================================== */
+    /* BibTeX */
+    /* ===================================================== */
+
+    pre {
+      background: #172b3a !important;
+      color: #edf6fa !important;
+
+      border-radius: 8px;
+
+      padding: 1.3rem !important;
+
+      overflow-x: auto;
+    }
+
+
+    /* ===================================================== */
+    /* Footer */
+    /* ===================================================== */
+
+    .footer {
+      background: #0d2335;
+      color: rgba(255,255,255,0.70);
+    }
+
+
+    .footer a {
+      color: #73d8c4;
+    }
+
+
+    /* ===================================================== */
+    /* Mobile */
+    /* ===================================================== */
+
+    @media screen and (max-width: 768px) {
+
+      .publication-title {
+        font-size: 2rem !important;
+      }
+
+      .section {
+        padding-top: 2.8rem;
+        padding-bottom: 2.8rem;
+      }
+
+      .abstract-box {
+        padding: 1.3rem;
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 <body>
 
-<!-- ========================================================= -->
-<!-- Header -->
-<!-- ========================================================= -->
 
-<section class="hero">
+<!-- ======================================================== -->
+<!-- HERO -->
+<!-- ======================================================== -->
+
+<section class="hero cogel-hero">
+
   <div class="hero-body">
+
     <div class="container is-max-desktop">
 
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
+      <div class="has-text-centered">
 
-          <h1 class="title is-1 publication-title">
-            CoGeL: Constraint-to-Geometry Learning from Demonstrations and Failures for Safe Long-Horizon Robot Navigation
-          </h1>
+        <h1 class="title is-1 publication-title">
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              Jumman Hossain<sup>1</sup>,
-            </span>
+          CoGeL:
+          Constraint-to-Geometry Learning from Demonstrations and Failures
+          for Safe Long-Horizon Robot Navigation
 
-            <span class="author-block">
-              Nirmalya Roy<sup>1</sup>
-            </span>
-          </div>
+        </h1>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <sup>1</sup>
-              Department of Information Systems,
-              University of Maryland, Baltimore County, USA
-            </span>
-          </div>
 
-          <div class="publication-venue">
-            10th Conference on Robot Learning (CoRL 2026), Austin, TX
-          </div>
+        <div class="is-size-5 hero-authors">
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
+          <span>
+            <strong style="color:white;">
+              Jumman Hossain
+            </strong><sup>1</sup>
+          </span>
 
-              <!-- Paper -->
-              <!-- Put the PDF next to index.html or change this path. -->
-              <span class="link-block">
-                <a
-                  href="./CoGeL_CoRL_2026__Camera_Ready_v2.pdf"
-                  target="_blank"
-                  class="external-link button is-normal is-rounded is-dark"
-                >
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
+          &nbsp;&nbsp;
 
-              <!-- Code -->
-              <span class="link-block">
-                <span
-                  class="button is-normal is-rounded is-dark coming-soon"
-                >
-                  <span class="icon">
-                    <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code Coming Soon</span>
-                </span>
-              </span>
-
-            </div>
-          </div>
+          <span>
+            <strong style="color:white;">
+              Nirmalya Roy
+            </strong><sup>1</sup>
+          </span>
 
         </div>
+
+
+        <div class="hero-affiliation">
+
+          <sup>1</sup>
+          Department of Information Systems,
+          University of Maryland, Baltimore County
+
+        </div>
+
+
+        <div class="venue-badge">
+          Conference on Robot Learning (CoRL) 2026
+          &nbsp;•&nbsp;
+          Austin, TX
+        </div>
+
+
+        <div class="publication-links">
+
+          <a
+            href="./CoGeL_CoRL_2026__Camera_Ready_v2.pdf"
+            target="_blank"
+            class="button is-rounded paper-button">
+
+            <span class="icon">
+              <i class="fas fa-file-pdf"></i>
+            </span>
+
+            <span>Paper</span>
+
+          </a>
+
+
+          <span
+            class="button is-rounded code-button">
+
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span>Code Coming Soon</span>
+
+          </span>
+
+        </div>
+
       </div>
 
     </div>
+
   </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- Abstract -->
-<!-- ========================================================= -->
+
+<!-- ======================================================== -->
+<!-- ABSTRACT -->
+<!-- ======================================================== -->
 
 <section class="section">
+
   <div class="container is-max-desktop">
 
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-
-        <h2 class="title is-3">Abstract</h2>
-
-        <div class="content has-text-justified">
-
-          <p>
-            Robots are often deployed in environments where safety must be learned from experience rather than specified in advance.
-            Demonstrations, operator interventions, near misses, and failed rollouts can reveal which behaviors are risky, but they provide only local evidence.
-            The key challenge is not only to identify risky behavior, but to make that knowledge shape the distance used for long-horizon planning.
-            Existing goal-conditioned methods can compose short-horizon behaviors into longer plans, but they typically assume that the relevant cost structure is already known.
-          </p>
-
-          <p>
-            We introduce <strong>CoGeL</strong>, a constraint-to-geometry learning method that learns a soft safety signal from robot data and incorporates it directly into the goal-reaching distance used for planning.
-            This makes the learned distance safety-aware rather than treating safety as a separate classifier, hard mask, or post-hoc filter.
-            We show that errors in the learned safety signal induce bounded changes in the navigation geometry, that route consistency supports composition through intermediate waypoints, and that, under a calibration condition, the learned safety scores bound the expected number of safety violations.
-            Experiments across wheeled and legged navigation tasks show that CoGeL reduces unsafe events while maintaining strong long-horizon goal-reaching performance.
-          </p>
-
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ========================================================= -->
-<!-- Method Overview -->
-<!-- ========================================================= -->
-
-<section class="section is-light" id="overview">
-  <div class="container is-max-desktop">
-
-    <h2 class="title is-3">
-      From Local Safety Evidence to Planning Geometry
+    <h2 class="title is-3 section-title">
+      Abstract
     </h2>
 
-    <div class="content cogel-summary">
-      <p>
-        CoGeL learns a planning geometry from local safety evidence collected through demonstrations, exploratory rollouts, failures, and interventions.
-        It learns a soft safety signal
-        \(\hat{\chi}_\psi(s,a)\)
-        and incorporates it into the one-step cost used to train a directed distance
-        \(d_\theta(s,g)\)
-        with Bellman regression and route-consistency regularization.
-        The learned distance supports both local control and waypoint-based long-horizon planning.
-      </p>
-    </div>
+    <div class="accent-line"></div>
 
 
-    <div class="columns is-multiline mt-5">
+    <div class="abstract-box has-text-justified">
 
-      <div class="column is-half-tablet is-one-quarter-desktop">
-        <div class="method-card">
+      Robots are often deployed in environments where safety must be learned
+      from experience rather than specified in advance.
+      Demonstrations, operator interventions, near misses, and failed rollouts
+      can reveal which behaviors are risky, but they provide only local evidence.
 
-          <span class="method-index">1</span>
+      The key challenge is not only to identify risky behavior, but to make that
+      knowledge shape the distance used for long-horizon planning.
 
-          <h3 class="title is-5">
-            Robot evidence
-          </h3>
+      Existing goal-conditioned methods can compose short-horizon behaviors
+      into longer plans, but they typically assume that the relevant cost
+      structure is already known.
 
-          <p>
-            Collect safe demonstrations together with failures, interventions, near misses, and safety-monitor events.
-          </p>
+      <br><br>
 
-        </div>
-      </div>
+      We introduce <strong>CoGeL</strong>, a constraint-to-geometry learning
+      method that learns a soft safety signal from robot data and incorporates
+      it directly into the goal-reaching distance used for planning.
 
+      This makes the learned distance safety-aware rather than treating safety
+      as a separate classifier, hard mask, or post-hoc filter.
 
-      <div class="column is-half-tablet is-one-quarter-desktop">
-        <div class="method-card">
+      We show that errors in the learned safety signal induce bounded changes
+      in the navigation geometry, that route consistency supports composition
+      through intermediate waypoints, and that, under a calibration condition,
+      the learned safety scores bound the expected number of safety violations.
 
-          <span class="method-index">2</span>
-
-          <h3 class="title is-5">
-            Safety signal
-          </h3>
-
-          <p>
-            Learn a soft violation score
-            \(\hat{\chi}_\psi(s,a)\in[0,1]\)
-            from the local evidence.
-          </p>
-
-        </div>
-      </div>
-
-
-      <div class="column is-half-tablet is-one-quarter-desktop">
-        <div class="method-card">
-
-          <span class="method-index">3</span>
-
-          <h3 class="title is-5">
-            Directed distance
-          </h3>
-
-          <p>
-            Shape the one-step cost with the learned safety signal and train a safety-aware directed distance.
-          </p>
-
-        </div>
-      </div>
-
-
-      <div class="column is-half-tablet is-one-quarter-desktop">
-        <div class="method-card">
-
-          <span class="method-index">4</span>
-
-          <h3 class="title is-5">
-            Long-horizon planning
-          </h3>
-
-          <p>
-            Use the learned distance as a directed waypoint cost so local behaviors can form longer routes.
-          </p>
-
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="content mt-5">
-
-      <h3 class="title is-4">
-        Safety-aware cost
-      </h3>
-
-      <div class="key-equation">
-        \[
-          \tilde c_\psi(s,a,s')
-          =
-          c(s,a,s')
-          +
-          \lambda\hat{\chi}_\psi(s,a).
-        \]
-      </div>
-
-      <p>
-        Risky actions become more expensive before route composition.
-        Unlike a hard mask, the safety term changes the planning cost smoothly with the learned risk estimate.
-      </p>
-
-
-      <h3 class="title is-4 mt-5">
-        Route consistency
-      </h3>
-
-      <div class="key-equation">
-        \[
-          d_\theta(s,g)
-          \lesssim
-          d_\theta(s,w)
-          +
-          d_\theta(w,g).
-        \]
-      </div>
-
-      <p>
-        This encourages the learned distance to remain useful when a long route is decomposed through intermediate waypoints.
-      </p>
+      Experiments across wheeled and legged navigation tasks show that CoGeL
+      reduces unsafe events while maintaining strong long-horizon
+      goal-reaching performance.
 
     </div>
 
   </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- Theory -->
-<!-- ========================================================= -->
 
-<section class="section" id="theory">
+<!-- ======================================================== -->
+<!-- OVERVIEW FIGURE -->
+<!-- ======================================================== -->
+
+<section class="section section-soft">
+
   <div class="container is-max-desktop">
 
-    <h2 class="title is-3">
-      What the Analysis Shows
+    <h2 class="title is-3 section-title">
+      Constraint-to-Geometry Learning
     </h2>
+
+    <div class="accent-line"></div>
+
+
+    <div class="figure-card overview-figure">
+
+      <img
+        src="./static/images/cogel/cogel_overview.png"
+        alt="Overview of the CoGeL framework">
+
+      <div class="figure-caption">
+
+        <strong>CoGeL overview.</strong>
+        Robot evidence is used to learn a local safety signal,
+        which reshapes the directed goal-reaching distance used
+        for long-horizon waypoint planning.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================== -->
+<!-- METHOD -->
+<!-- ======================================================== -->
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 section-title">
+      How CoGeL Works
+    </h2>
+
+    <p class="section-subtitle">
+
+      CoGeL turns local demonstrations, failures, and interventions
+      into a safety-aware planning geometry.
+
+    </p>
+
 
     <div class="columns is-multiline">
 
 
-      <div class="column is-half">
-        <div class="theory-card">
+      <div class="column is-one-quarter">
+
+        <div class="method-card safe">
+
+          <div class="method-number">1</div>
 
           <h3 class="title is-5">
-            Safety error controls geometry error
+            Robot Evidence
           </h3>
 
           <p>
-            If
-            \(\|\hat\chi_\psi-\chi^\star\|_\infty
-            \le
-            \epsilon_\chi\),
-            then
+
+            Collect demonstrations, exploratory rollouts,
+            failures, interventions, and safety-monitor events.
+
           </p>
 
-          <div class="key-equation">
+        </div>
+
+      </div>
+
+
+
+      <div class="column is-one-quarter">
+
+        <div class="method-card risk">
+
+          <div class="method-number">2</div>
+
+          <h3 class="title is-5">
+            Safety Signal
+          </h3>
+
+          <p>
+
+            Learn a soft risk estimate
+
             \[
-              \|d^\star_{\hat\chi}
-              -
-              d^\star_{\chi^\star}\|_\infty
-              \le
-              \frac{\lambda}{1-\gamma}
-              \epsilon_\chi.
+            \hat{\chi}_{\psi}(s,a)\in[0,1].
             \]
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="column is-one-quarter">
+
+        <div class="method-card geometry">
+
+          <div class="method-number">3</div>
+
+          <h3 class="title is-5">
+            Directed Geometry
+          </h3>
+
+          <p>
+
+            Incorporate the learned safety signal into the
+            Bellman cost to learn a directed distance.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="column is-one-quarter">
+
+        <div class="method-card plan">
+
+          <div class="method-number">4</div>
+
+          <h3 class="title is-5">
+            Long-Horizon Planning
+          </h3>
+
+          <p>
+
+            Use the learned distance as a waypoint cost so
+            local behaviors can form longer safe routes.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="columns mt-5">
+
+      <div class="column is-half">
+
+        <h3 class="title is-4">
+          Safety-aware cost
+        </h3>
+
+        <div class="equation-block">
+
+          \[
+          \tilde c_{\psi}(s,a,s')
+          =
+          c(s,a,s')
+          +
+          \lambda\hat{\chi}_{\psi}(s,a).
+          \]
+
+        </div>
+
+        <p>
+
+          Risky actions become more expensive before route composition.
+          The penalty changes smoothly with the learned safety estimate.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="column is-half">
+
+        <h3 class="title is-4">
+          Route consistency
+        </h3>
+
+        <div class="equation-block">
+
+          \[
+          d_{\theta}(s,g)
+          \lesssim
+          d_{\theta}(s,w)
+          +
+          d_{\theta}(w,g).
+          \]
+
+        </div>
+
+        <p>
+
+          This encourages the learned distance to compose through
+          intermediate waypoints over longer routes.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================== -->
+<!-- ENVIRONMENTS -->
+<!-- ======================================================== -->
+
+<section class="section section-soft">
+
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 section-title">
+      Navigation Scenarios
+    </h2>
+
+    <div class="accent-line"></div>
+
+
+    <div class="columns">
+
+
+      <div class="column is-half">
+
+        <div class="figure-card">
+
+          <img
+            src="./static/images/cogel/simulation_scenarios.png"
+            alt="CoGeL simulation navigation scenarios">
+
+          <div class="figure-caption">
+
+            <strong>Simulation.</strong>
+            Hidden terrain hazards and directional risks are not
+            provided to the policy as an explicit safety map.
+
           </div>
 
         </div>
+
       </div>
 
 
+
       <div class="column is-half">
-        <div class="theory-card">
 
-          <h3 class="title is-5">
-            Waypoint error accumulates gradually
-          </h3>
+        <div class="figure-card">
 
-          <p>
-            For a route
-            \(w_0=s,\ldots,w_N=g\),
-          </p>
+          <img
+            src="./static/images/cogel/real_world_scenarios.png"
+            alt="CoGeL real-world robot navigation scenarios">
 
-          <div class="key-equation">
-            \[
-              d_\theta(s,g)
-              \le
-              \sum_{i=0}^{N-1}
-              d_\theta(w_i,w_{i+1})
-              +
-              (N-1)\epsilon_\triangle.
-            \]
+          <div class="figure-caption">
+
+            <strong>Real-world navigation.</strong>
+            CoGeL favors routes around loose debris,
+            slippery terrain, and pavement hazards.
+
           </div>
 
         </div>
-      </div>
 
-
-      <div class="column is-half">
-        <div class="theory-card">
-
-          <h3 class="title is-5">
-            Calibration connects scores to violations
-          </h3>
-
-          <p>
-            Under the paper's calibration condition, the expected number of safety violations is controlled by the accumulated predicted risk plus a calibration-error term.
-            For \(\lambda>0\), the same result can be related to accumulated augmented cost.
-          </p>
-
-        </div>
-      </div>
-
-
-      <div class="column is-half">
-        <div class="theory-card">
-
-          <h3 class="title is-5">
-            Directional hazards require directed geometry
-          </h3>
-
-          <p>
-            If the true directional cost gap is
-            \(\Delta>0\),
-            any symmetric metric incurs error at least
-            \(\Delta/2\)
-            in one of the two directions.
-          </p>
-
-        </div>
       </div>
 
 
     </div>
 
   </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- Results -->
-<!-- ========================================================= -->
 
-<section class="section is-light" id="results">
+<!-- ======================================================== -->
+<!-- RESULTS HIGHLIGHTS -->
+<!-- ======================================================== -->
+
+<section class="section">
+
   <div class="container is-max-desktop">
 
-    <h2 class="title is-3">
+    <h2 class="title is-3 section-title">
       Results
     </h2>
 
-    <div class="content">
-      <p>
-        We evaluate CoGeL in wheeled and legged navigation with hidden hazards and test goals extending up to
-        \(8\times\)
-        the training horizon.
-        All reported simulation values are averaged over five random seeds.
-      </p>
+    <div class="accent-line"></div>
+
+
+    <div class="columns">
+
+
+      <div class="column">
+
+        <div class="result-highlight">
+
+          <span class="result-value">
+            0.91
+          </span>
+
+          <span class="result-label">
+            Wheeled navigation success
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="column">
+
+        <div class="result-highlight">
+
+          <span class="result-value">
+            0.72
+          </span>
+
+          <span class="result-label">
+            Wheeled violations / episode
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="column">
+
+        <div class="result-highlight">
+
+          <span class="result-value">
+            0.76
+          </span>
+
+          <span class="result-label">
+            Wheeled LH-8× success
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="column">
+
+        <div class="result-highlight">
+
+          <span class="result-value">
+            0.68
+          </span>
+
+          <span class="result-label">
+            Legged LH-8× success
+          </span>
+
+        </div>
+
+      </div>
+
+
     </div>
 
 
-    <!-- Wheeled -->
 
-    <h3 class="title is-4">
-      Wheeled navigation
-    </h3>
+    <div class="figure-card mt-5">
+
+      <img
+        src="./static/images/cogel/long_horizon_tradeoff.png"
+        alt="Long-horizon generalization and safety-efficiency tradeoff">
+
+      <div class="figure-caption">
+
+        <strong>Long-horizon generalization and safety-efficiency tradeoff.</strong>
+        CoGeL maintains stronger success as test horizons increase,
+        while the safety weight controls the tradeoff between success and violations.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================== -->
+<!-- MAIN TABLE -->
+<!-- ======================================================== -->
+
+<section class="section section-soft">
+
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 section-title">
+      Main Navigation Results
+    </h2>
+
+    <div class="accent-line"></div>
+
 
     <div class="table-container">
 
-      <table
-        class="table is-bordered is-striped is-hoverable is-fullwidth compact-table"
-      >
+      <table class="
+        table
+        is-bordered
+        is-hoverable
+        is-fullwidth
+        result-table
+      ">
 
         <thead>
+
           <tr>
+
             <th>Method</th>
-            <th>SR ↑</th>
-            <th>CV ↓</th>
-            <th>SPL ↑</th>
-            <th>LH-4× ↑</th>
-            <th>LH-8× ↑</th>
+
+            <th>
+              SR ↑
+            </th>
+
+            <th>
+              CV ↓
+            </th>
+
+            <th>
+              SPL ↑
+            </th>
+
+            <th>
+              LH-4× ↑
+            </th>
+
+            <th>
+              LH-8× ↑
+            </th>
+
           </tr>
+
         </thead>
+
 
         <tbody>
 
@@ -560,6 +1225,7 @@
             <td>0.16</td>
           </tr>
 
+
           <tr>
             <td>Lag-PPO</td>
             <td>0.80</td>
@@ -568,6 +1234,7 @@
             <td>0.45</td>
             <td>0.24</td>
           </tr>
+
 
           <tr>
             <td>CRL</td>
@@ -578,6 +1245,7 @@
             <td>0.31</td>
           </tr>
 
+
           <tr>
             <td>QRL</td>
             <td>0.89</td>
@@ -586,6 +1254,7 @@
             <td>0.65</td>
             <td>0.43</td>
           </tr>
+
 
           <tr>
             <td>Safety+Plan</td>
@@ -596,13 +1265,33 @@
             <td>0.39</td>
           </tr>
 
-          <tr>
-            <td><strong>CoGeL</strong></td>
-            <td><strong>0.91</strong></td>
-            <td><strong>0.72</strong></td>
-            <td><strong>0.76</strong></td>
-            <td><strong>0.84</strong></td>
-            <td><strong>0.76</strong></td>
+
+          <tr class="ours-row">
+
+            <td>
+              CoGeL
+            </td>
+
+            <td>
+              0.91
+            </td>
+
+            <td>
+              0.72
+            </td>
+
+            <td>
+              0.76
+            </td>
+
+            <td>
+              0.84
+            </td>
+
+            <td>
+              0.76
+            </td>
+
           </tr>
 
         </tbody>
@@ -612,197 +1301,442 @@
     </div>
 
 
-    <!-- Legged -->
+    <p class="has-text-centered is-size-7 has-text-grey">
 
-    <h3 class="title is-4 mt-6">
-      Legged navigation
-    </h3>
+      Wheeled navigation results.
+      SR: success rate;
+      CV: constraint violations per episode;
+      SPL: success weighted by path length.
 
-    <div class="table-container">
+    </p>
 
-      <table
-        class="table is-bordered is-striped is-hoverable is-fullwidth compact-table"
-      >
+  </div>
 
-        <thead>
-          <tr>
-            <th>Method</th>
-            <th>SR ↑</th>
-            <th>CV ↓</th>
-            <th>SPL ↑</th>
-            <th>LH-4× ↑</th>
-            <th>LH-8× ↑</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          <tr>
-            <td>GCBC</td>
-            <td>0.72</td>
-            <td>4.70</td>
-            <td>0.54</td>
-            <td>0.28</td>
-            <td>0.12</td>
-          </tr>
-
-          <tr>
-            <td>Lag-PPO</td>
-            <td>0.76</td>
-            <td>2.15</td>
-            <td>0.51</td>
-            <td>0.39</td>
-            <td>0.20</td>
-          </tr>
-
-          <tr>
-            <td>CRL</td>
-            <td>0.80</td>
-            <td>3.35</td>
-            <td>0.60</td>
-            <td>0.46</td>
-            <td>0.27</td>
-          </tr>
-
-          <tr>
-            <td>QRL</td>
-            <td>0.84</td>
-            <td>3.10</td>
-            <td>0.66</td>
-            <td>0.58</td>
-            <td>0.36</td>
-          </tr>
-
-          <tr>
-            <td>Safety+Plan</td>
-            <td>0.79</td>
-            <td>1.80</td>
-            <td>0.57</td>
-            <td>0.53</td>
-            <td>0.33</td>
-          </tr>
-
-          <tr>
-            <td><strong>CoGeL</strong></td>
-            <td><strong>0.87</strong></td>
-            <td><strong>0.95</strong></td>
-            <td><strong>0.70</strong></td>
-            <td><strong>0.78</strong></td>
-            <td><strong>0.68</strong></td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
+</section>
 
 
-    <!-- Result highlights -->
 
-    <div class="columns is-multiline mt-5">
+<!-- ======================================================== -->
+<!-- THEORY -->
+<!-- ======================================================== -->
 
-      <div class="column is-half">
-        <div class="result-card">
+<section class="section">
 
-          <h3 class="title is-5">
-            Long-horizon composition
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 section-title">
+      Theory and Empirical Checks
+    </h2>
+
+    <div class="accent-line"></div>
+
+
+    <div class="columns">
+
+
+      <div class="column">
+
+        <div class="theory-card teal">
+
+          <h3>
+            Safety → Geometry
           </h3>
 
-          <p>
-            CoGeL reaches 0.76 LH-8× success in wheeled navigation and 0.68 in legged navigation, exceeding the comparison methods in both settings.
-          </p>
+          If
+
+          \[
+          \|\hat{\chi}_{\psi}-\chi^\star\|_{\infty}
+          \le
+          \epsilon_{\chi},
+          \]
+
+          then
+
+          \[
+          \|d^\star_{\hat{\chi}}
+          -
+          d^\star_{\chi^\star}\|_{\infty}
+          \le
+          \frac{\lambda}{1-\gamma}
+          \epsilon_{\chi}.
+          \]
 
         </div>
+
       </div>
 
 
-      <div class="column is-half">
-        <div class="result-card">
 
-          <h3 class="title is-5">
-            Directional hazards
+      <div class="column">
+
+        <div class="theory-card blue">
+
+          <h3>
+            Waypoint Composition
           </h3>
 
-          <p>
-            Replacing the directed distance with a symmetric metric reduces directional-hazard success from 0.84 to 0.54.
-          </p>
+          For
+          \(w_0=s,\ldots,w_N=g\),
+
+          \[
+          d_{\theta}(s,g)
+          \le
+          \sum_{i=0}^{N-1}
+          d_{\theta}(w_i,w_{i+1})
+          +
+          (N-1)\epsilon_{\triangle}.
+          \]
 
         </div>
+
+      </div>
+
+
+
+      <div class="column">
+
+        <div class="theory-card orange">
+
+          <h3>
+            Directional Hazards
+          </h3>
+
+          If the directional cost gap is
+          \(\Delta>0\),
+          every symmetric metric incurs an approximation error of at least
+
+          \[
+          \frac{\Delta}{2}
+          \]
+
+          in one direction.
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="figure-card mt-5">
+
+      <img
+        src="./static/images/cogel/theory_checks.png"
+        alt="Empirical checks of CoGeL theoretical results">
+
+      <div class="figure-caption">
+
+        <strong>Empirical checks of the theory.</strong>
+        Safety-estimation error yields bounded geometry error,
+        route error increases with composed waypoint segments,
+        and calibrated risk scores bound expected safety violations.
+
       </div>
 
     </div>
 
   </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- Hardware -->
-<!-- ========================================================= -->
 
-<section class="section" id="hardware">
+<!-- ======================================================== -->
+<!-- DIRECTIONAL GEOMETRY -->
+<!-- ======================================================== -->
+
+<section class="section section-soft">
+
   <div class="container is-max-desktop">
 
-    <h2 class="title is-3">
+    <h2 class="title is-3 section-title">
+      Why Directed Geometry?
+    </h2>
+
+    <div class="accent-line"></div>
+
+
+    <div class="columns is-vcentered">
+
+
+      <div class="column is-half">
+
+        <div class="content">
+
+          <p>
+
+            Many robot hazards are directional.
+            Entering slippery terrain, climbing onto unstable debris,
+            or approaching a narrow region may cost more than leaving it.
+
+          </p>
+
+
+          <p>
+
+            CoGeL therefore learns a directed distance:
+
+          </p>
+
+
+          <div class="equation-block">
+
+            \[
+            d^\star(s,g)
+            \neq
+            d^\star(g,s).
+            \]
+
+          </div>
+
+
+          <p>
+
+            A symmetric metric must assign the same value to both
+            directions and therefore cannot represent this difference.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="column is-half">
+
+        <div class="figure-card">
+
+          <img
+            src="./static/images/cogel/directional_safety.png"
+            alt="Directional safety geometry">
+
+          <div class="figure-caption">
+
+            <span class="risk-text">
+              Entering the hazard
+            </span>
+
+            can cost more than
+
+            <span class="safe-text">
+              leaving it.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================== -->
+<!-- WAYPOINT PLANNING -->
+<!-- ======================================================== -->
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 section-title">
+      Safety-Aware Waypoint Planning
+    </h2>
+
+    <div class="accent-line"></div>
+
+
+    <div class="figure-card">
+
+      <img
+        src="./static/images/cogel/waypoint_planner.png"
+        alt="CoGeL safety-aware waypoint planner">
+
+      <div class="figure-caption">
+
+        The learned directed distance makes a safer waypoint route
+        preferable even when the direct route is shorter.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================== -->
+<!-- REAL ROBOTS -->
+<!-- ======================================================== -->
+
+<section class="section section-soft">
+
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 section-title">
       Real-Robot Evaluation
     </h2>
 
-    <div class="content">
-      <p>
-        We also evaluate CoGeL in repeated physical navigation trials on a Boston Dynamics Spot and a Clearpath Jackal using matched start-goal conditions and hazard settings.
-      </p>
-    </div>
+    <div class="accent-line"></div>
+
+
+    <p class="section-subtitle">
+
+      Physical navigation trials with a Boston Dynamics Spot
+      and Clearpath Jackal.
+
+    </p>
 
 
     <div class="table-container">
 
-      <table
-        class="table is-bordered is-striped is-hoverable is-fullwidth compact-table"
-      >
+      <table class="
+        table
+        is-bordered
+        is-hoverable
+        is-fullwidth
+        result-table
+      ">
 
         <thead>
+
           <tr>
-            <th>Robot</th>
-            <th>Method</th>
-            <th>Trials</th>
-            <th>SR ↑</th>
-            <th>Safety events / trial ↓</th>
+
+            <th>
+              Robot
+            </th>
+
+            <th>
+              Method
+            </th>
+
+            <th>
+              Trials
+            </th>
+
+            <th>
+              SR ↑
+            </th>
+
+            <th>
+              Safety events / trial ↓
+            </th>
+
           </tr>
+
         </thead>
+
 
         <tbody>
 
           <tr>
-            <td>Spot</td>
-            <td>Safety+Plan</td>
-            <td>20</td>
-            <td>0.75</td>
-            <td>0.45</td>
+
+            <td>
+              Spot
+            </td>
+
+            <td>
+              Safety+Plan
+            </td>
+
+            <td>
+              20
+            </td>
+
+            <td>
+              0.75
+            </td>
+
+            <td>
+              0.45
+            </td>
+
           </tr>
 
-          <tr>
-            <td>Spot</td>
-            <td><strong>CoGeL</strong></td>
-            <td>20</td>
-            <td><strong>0.85</strong></td>
-            <td><strong>0.20</strong></td>
+
+          <tr class="ours-row">
+
+            <td>
+              Spot
+            </td>
+
+            <td>
+              CoGeL
+            </td>
+
+            <td>
+              20
+            </td>
+
+            <td>
+              0.85
+            </td>
+
+            <td>
+              0.20
+            </td>
+
           </tr>
 
-          <tr>
-            <td>Jackal</td>
-            <td>Safety+Plan</td>
-            <td>20</td>
-            <td>0.80</td>
-            <td>0.40</td>
-          </tr>
 
           <tr>
-            <td>Jackal</td>
-            <td><strong>CoGeL</strong></td>
-            <td>20</td>
-            <td><strong>0.90</strong></td>
-            <td><strong>0.15</strong></td>
+
+            <td>
+              Jackal
+            </td>
+
+            <td>
+              Safety+Plan
+            </td>
+
+            <td>
+              20
+            </td>
+
+            <td>
+              0.80
+            </td>
+
+            <td>
+              0.40
+            </td>
+
+          </tr>
+
+
+          <tr class="ours-row">
+
+            <td>
+              Jackal
+            </td>
+
+            <td>
+              CoGeL
+            </td>
+
+            <td>
+              20
+            </td>
+
+            <td>
+              0.90
+            </td>
+
+            <td>
+              0.15
+            </td>
+
           </tr>
 
         </tbody>
@@ -812,45 +1746,134 @@
     </div>
 
   </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- Limitations -->
-<!-- ========================================================= -->
 
-<section class="section is-light" id="limitations">
+<!-- ======================================================== -->
+<!-- FAILURE CASES -->
+<!-- ======================================================== -->
+
+<section class="section">
+
   <div class="container is-max-desktop">
 
-    <h2 class="title is-3">
-      Limitations
+    <h2 class="title is-3 section-title">
+      Challenging Cases
     </h2>
 
-    <div class="content">
-      <p>
-        CoGeL depends on the quality and coverage of the evidence used to learn the safety signal.
-        Sparse or poorly timed labels can miss hazards or make the learned geometry overly conservative.
-        The method does not guarantee zero violations, and calibration can degrade under distribution shift.
-        Long-horizon performance also depends on waypoint coverage, so a route can fail if the graph misses a narrow safe corridor even when the local distance is accurate.
-      </p>
+    <div class="accent-line"></div>
+
+
+    <div class="columns">
+
+
+      <div class="column is-half">
+
+        <div class="figure-card">
+
+          <img
+            src="./static/images/cogel/stairs-climb-slippery-mat.png"
+            alt="Stair ascent around a slippery hazard">
+
+          <div class="figure-caption">
+
+            <strong>Slippery stair approach.</strong>
+            CoGeL favors an entry route that avoids the local
+            slippery region.
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="column is-half">
+
+        <div class="figure-card">
+
+          <img
+            src="./static/images/cogel/narrow_failed_approach.jpg"
+            alt="Failure in confined stepping">
+
+          <div class="figure-caption">
+
+            <strong>Confined stepping failure.</strong>
+            Planning geometry alone cannot replace accurate
+            local foothold and contact control.
+
+          </div>
+
+        </div>
+
+      </div>
+
+
     </div>
 
   </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- BibTeX -->
-<!-- ========================================================= -->
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
+<!-- ======================================================== -->
+<!-- LIMITATIONS -->
+<!-- ======================================================== -->
 
-    <h2 class="title is-3">
+<section class="section section-soft">
+
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 section-title">
+      Limitations
+    </h2>
+
+    <div class="accent-line"></div>
+
+
+    <div class="limitation-box">
+
+      CoGeL depends on the quality and coverage of the evidence used to
+      learn the safety signal.
+
+      Sparse, biased, or poorly timed labels can cause
+      \(\hat{\chi}_{\psi}(s,a)\) to miss hazards or over-penalize safe behavior.
+
+      CoGeL does not guarantee zero violations, and the safety estimate
+      can become poorly calibrated under distribution shift.
+
+      Long-horizon performance also depends on waypoint coverage;
+      a global route can fail if the graph misses a narrow safe corridor
+      even when the local distance is accurate.
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ======================================================== -->
+<!-- BIBTEX -->
+<!-- ======================================================== -->
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 section-title">
       BibTeX
     </h2>
 
-    <pre><code>@inproceedings{hossain2026cogel,
+    <div class="accent-line"></div>
+
+
+<pre><code>@inproceedings{hossain2026cogel,
   title     = {{CoGeL}: Constraint-to-Geometry Learning from Demonstrations and Failures for Safe Long-Horizon Robot Navigation},
   author    = {Jumman Hossain and Nirmalya Roy},
   booktitle = {10th Conference on Robot Learning (CoRL)},
@@ -859,47 +1882,59 @@
 }</code></pre>
 
   </div>
+
 </section>
 
 
-<!-- ========================================================= -->
-<!-- Footer -->
-<!-- ========================================================= -->
+
+<!-- ======================================================== -->
+<!-- FOOTER -->
+<!-- ======================================================== -->
 
 <footer class="footer">
+
   <div class="container">
 
-    <div class="columns is-centered">
-      <div class="column is-8">
+    <div class="has-text-centered">
 
-        <div class="content">
+      <p style="font-size:0.75rem;">
 
-          <p style="font-size: 0.65rem;">
-            This webpage was adapted from the
-            <a
-              href="https://nerfies.github.io"
-              target="_blank"
-              rel="noopener"
-            >
-              Nerfies
-            </a>
-            project-page template, licensed under a
-            <a
-              rel="license"
-              href="http://creativecommons.org/licenses/by-sa/4.0/"
-              target="_blank"
-            >
-              Creative Commons Attribution-ShareAlike 4.0 International License
-            </a>.
-          </p>
+        CoGeL — Constraint-to-Geometry Learning
 
-        </div>
+      </p>
 
-      </div>
+
+      <p style="font-size:0.65rem;">
+
+        Website adapted from the
+
+        <a
+          href="https://nerfies.github.io"
+          target="_blank">
+
+          Nerfies project-page template
+
+        </a>.
+
+      </p>
+
     </div>
 
   </div>
+
 </footer>
 
+
+<!-- ======================================================== -->
+<!-- Icons -->
+<!-- ======================================================== -->
+
+<script
+  defer
+  src="./static/js/fontawesome.all.min.js">
+</script>
+
+
 </body>
+
 </html>
